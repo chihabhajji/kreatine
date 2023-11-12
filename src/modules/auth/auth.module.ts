@@ -1,11 +1,10 @@
 import { Module } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { ConfigModule } from '@nestjs/config';
-import oryConfig from '../ory/ory.config';
+import OryModule from './ory/ory.module';
 
 @Module({
-  imports: [ConfigModule.forFeature(oryConfig)],
+  imports: [OryModule],
   providers: [AuthService],
-  exports: [AuthService],
+  exports: [AuthService, OryModule],
 })
 export class AuthModule {}
