@@ -5,6 +5,7 @@ import swaggerInit from './utils/swagger/swagger.init';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  // TODO this was my first fight with andrea
   const globalPrefix = 'api';
   app.setGlobalPrefix(globalPrefix);
   const port = process.env.PORT || 3000;
