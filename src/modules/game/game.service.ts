@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@mikro-orm/nestjs';
-import { EntityRepository } from '@mikro-orm/core';
+import { EntityRepository } from '@mikro-orm/mongodb';
 import { Game } from './schema/game.entity';
 
 @Injectable()
