@@ -18,7 +18,8 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "proxy": "ory proxy --no-jwt --port 4000 http://localhost:3000/"
+    "proxy": "ory proxy --no-jwt --port 4004 http://localhost:5173/",
+    "tunnel": "ory tunnel --dev --port 4000 --project infallible-brattain-buzagnyuc0 http://localhost:4000"
   },
   "dependencies": {
     "@mikro-orm/core": "^5.9.3",

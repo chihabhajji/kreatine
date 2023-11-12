@@ -16,8 +16,6 @@ export default function swaggerInit(app: INestApplication) {
               'https://infallible-brattain-buzagnyuc0.projects.oryapis.com/oauth2/auth',
             tokenUrl:
               'https://infallible-brattain-buzagnyuc0.projects.oryapis.com/oauth2/token',
-            refreshUrl:
-              'https://infallible-brattain-buzagnyuc0.projects.oryapis.com/oauth2/token',
             scopes: {
               openid: 'openid',
               offline_access: 'offline_access',
@@ -28,7 +26,7 @@ export default function swaggerInit(app: INestApplication) {
           },
         },
       })
-      .addSecurityRequirements('oauth2', [])
+      .addSecurityRequirements('oauth2')
       .build();
     SwaggerModule.setup(
       'docs',
@@ -38,21 +36,16 @@ export default function swaggerInit(app: INestApplication) {
         deepScanRoutes: true,
       }),
       {
-        // url: '/swagger',
         yamlDocumentUrl: '/yaml',
         jsonDocumentUrl: '/json',
         swaggerOptions: {
           persistAuthorization: true,
+          oauth2RedirectUrl: 'http://localhost:5173/docs/oauth2-redirect.html',
           initOAuth: {
             appName: 'kreativious-backend',
-            realm: 'kreativious-backend',
             clientId: '076433a5-40e1-48b0-ba2a-12fd68124925',
             clientSecret: 'sG1KrBNHa-h0Sq-K4QO2jj_qR',
-            additionalQueryStringParams: {
-              redirect_uri: 'http://localhost:3000/docs/callback',
-            },
             scopes: ['openid', 'offline_access', 'offline', 'email', 'profile'],
-            useBasicAuthenticationWithAccessCodeGrant: true,
           },
         },
       },
