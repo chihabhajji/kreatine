@@ -2,6 +2,7 @@ import { defineConfig, Options } from '@mikro-orm/mongodb';
 import UserSchema from '../../modules/users/user.schema';
 import { registerAs } from '@nestjs/config';
 import { IsString, IsUrl } from 'class-validator';
+import { Game } from 'src/modules/game/schema/game.entity';
 
 export class DatabaseSecrets {
   @IsString()
@@ -25,6 +26,6 @@ export const mikroOrmConfig: (cfg: DatabaseSecrets) => Options = ({
   defineConfig({
     strict: true,
     dbName: databaseName,
-    entities: [UserSchema],
+    entities: [UserSchema, Game],
     clientUrl: databaseUri,
   });
