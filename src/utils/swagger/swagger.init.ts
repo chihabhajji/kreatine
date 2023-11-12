@@ -17,7 +17,7 @@ export default function swaggerInit(app: INestApplication) {
       .addSecurityRequirements('Authorization')
       .build();
     SwaggerModule.setup(
-      'swagger',
+      'docs',
       app,
       SwaggerModule.createDocument(app, config, {
         operationIdFactory: (controllerKey, methodKey) => methodKey,
