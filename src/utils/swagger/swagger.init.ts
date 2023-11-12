@@ -12,8 +12,10 @@ export default function swaggerInit(app: INestApplication) {
         description: 'OAuth2',
         flows: {
           authorizationCode: {
-            authorizationUrl: 'http://localhost:4000/oauth2/auth',
-            tokenUrl: 'http://localhost:4000/oauth2/token',
+            authorizationUrl:
+              'https://infallible-brattain-buzagnyuc0.projects.oryapis.com/oauth2/auth',
+            tokenUrl:
+              'https://infallible-brattain-buzagnyuc0.projects.oryapis.com/oauth2/token',
             scopes: {
               openid: 'openid',
               offline_access: 'offline_access',
@@ -38,14 +40,12 @@ export default function swaggerInit(app: INestApplication) {
         jsonDocumentUrl: '/json',
         swaggerOptions: {
           persistAuthorization: true,
+          oauth2RedirectUrl: 'http://localhost:5173/oauth2-redirect',
           initOAuth: {
             appName: 'kreativious-backend',
             clientId: '076433a5-40e1-48b0-ba2a-12fd68124925',
             clientSecret: 'sG1KrBNHa-h0Sq-K4QO2jj_qR',
             scopes: ['openid', 'offline_access', 'offline', 'email', 'profile'],
-            additionalQueryStringParams: {
-              redirect_uri: 'http://localhost:5173/docs/oauth2-redirect.html',
-            },
           },
         },
       },
