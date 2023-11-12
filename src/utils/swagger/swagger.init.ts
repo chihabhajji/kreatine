@@ -40,7 +40,7 @@ export default function swaggerInit(app: INestApplication) {
         jsonDocumentUrl: '/json',
         swaggerOptions: {
           persistAuthorization: true,
-          oauth2RedirectUrl: 'http://localhost:5173/oauth2-redirect',
+          oauth2RedirectUrl: 'http://localhost:5173/docs/oauth2-redirect.html',
           initOAuth: {
             appName: 'kreativious-backend',
             clientId: '076433a5-40e1-48b0-ba2a-12fd68124925',
