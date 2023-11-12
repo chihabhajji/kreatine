@@ -1,20 +1,30 @@
 import { defineConfig, Options } from '@mikro-orm/mongodb';
-import { join } from 'path';
 import UserSchema from '../../modules/users/user.schema';
+import { registerAs } from '@nestjs/config';
+import { IsString, IsUrl } from 'class-validator';
 
-const basePath = join(__dirname, '..');
+export class DatabaseSecrets {
+  @IsString()
+  databaseName: string;
 
-const entitiesPath = join(basePath, 'dist', '**.schema.js');
-const entitiesTsPath = join(basePath, 'src', '**.schema.ts');
+  @IsUrl()
+  databaseUri: string;
+}
 
-console.dir({
-  entitiesPath,
-  entitiesTsPath,
+export default registerAs('database', () => {
+  return {
+    databaseUri: process.env.MONGO_URI,
+    databaseName: process.env.MONGO_DB_NAME,
+  } as DatabaseSecrets;
 });
-export const mikroOrmConfig: Options = defineConfig({
-  strict: true,
-  dbName: 'form-builder',
-  entities: [UserSchema],
-  clientUrl:
-    'mongodb+srv://chihab:JmILhx418KzmkYic@cluster0.4eh6xyz.mongodb.net/?retryWrites=true&w=majority',
-});
+
+export const mikroOrmConfig: (cfg: DatabaseSecrets) => Options = ({
+  databaseUri,
+  databaseName,
+}: DatabaseSecrets) =>
+  defineConfig({
+    strict: true,
+    dbName: databaseName,
+    entities: [UserSchema],
+    clientUrl: databaseUri,
+  });

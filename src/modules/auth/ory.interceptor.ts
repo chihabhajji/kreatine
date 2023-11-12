@@ -16,6 +16,7 @@ import { Observable } from 'rxjs';
 export class AuthInterceptor implements NestInterceptor {
   private readonly JwkApi = new WellknownApi(
     new Configuration({
+      // TODO: Env
       basePath: 'https://infallible-brattain-buzagnyuc0.projects.oryapis.com',
       accessToken: 'ory_pat_n3DPSlMW6IXlbD5rAuHqHawItKa1ObuG',
       baseOptions: {
