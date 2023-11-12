@@ -1,5 +1,5 @@
 import { Entity, PrimaryKey } from '@mikro-orm/core';
-import { OryIdentity } from '../auth/ory-identity.entity';
+import { OryIdentity } from '../ory/ory.entity';
 
 @Entity({})
 export default class UserSchema implements OryIdentity {

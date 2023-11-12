@@ -9,7 +9,7 @@ import { Request } from 'express';
 import { Configuration, WellknownApi } from '@ory/client';
 import { verify } from 'jsonwebtoken';
 import jwktopem from 'jwk-to-pem';
-import { OryIdentity } from './ory-identity.entity';
+import { OryIdentity } from './ory.entity';
 import { Observable } from 'rxjs';
 
 @Injectable()

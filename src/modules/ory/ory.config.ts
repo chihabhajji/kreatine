@@ -8,7 +8,7 @@ export class AuthSecrets {
   oryAccessToken: string;
 }
 
-export default registerAs('auth', () => {
+export default registerAs('ory', () => {
   return {
     oryBasePath: process.env.ORY_URL,
     oryAccessToken: process.env.ORY_TOKEN,
