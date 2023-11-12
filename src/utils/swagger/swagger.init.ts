@@ -24,8 +24,7 @@ export default function swaggerInit(app: INestApplication) {
           },
         },
       })
-      .addSecurityRequirements('oauth2', [])
-      .setBasePath('api')
+      .addSecurityRequirements('oauth2')
       .build();
     SwaggerModule.setup(
       'docs',
