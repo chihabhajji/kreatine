@@ -1,7 +1,12 @@
 import { INestApplication } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { OrySecrets } from '../../modules/auth/ory/ory.config';
 
-export default function swaggerInit(app: INestApplication) {
+export default function swaggerInit(
+  app: INestApplication,
+  orySecrets: OrySecrets,
+) {
+  console.log(orySecrets);
   if (process.env.NODE_ENV !== 'production') {
     const config = new DocumentBuilder()
       .setTitle('kreativious-backend')
@@ -12,17 +17,16 @@ export default function swaggerInit(app: INestApplication) {
         description: 'OAuth2',
         flows: {
           authorizationCode: {
-            authorizationUrl:
-              'https://infallible-brattain-buzagnyuc0.projects.oryapis.com/oauth2/auth',
-            tokenUrl:
-              'https://infallible-brattain-buzagnyuc0.projects.oryapis.com/oauth2/token',
-            scopes: {
-              openid: 'openid',
-              offline_access: 'offline_access',
-              offline: 'offline',
-              email: 'email',
-              profile: 'profile',
-            },
+            authorizationUrl: `${orySecrets.oryBasePath}/oauth2/auth`,
+            tokenUrl: `${orySecrets.oryBasePath}/oauth2/token`,
+            refreshUrl: `${orySecrets.oryBasePath}/oauth2/token`,
+            scopes: orySecrets.oryAppClientScopes.reduce(
+              (acc, cur) => {
+                acc[cur] = cur;
+                return acc;
+              },
+              {} as Record<string, string>,
+            ),
           },
         },
       })
@@ -42,10 +46,10 @@ export default function swaggerInit(app: INestApplication) {
           persistAuthorization: true,
           oauth2RedirectUrl: 'http://localhost:5173/docs/oauth2-redirect.html',
           initOAuth: {
-            appName: 'kreativious-backend',
-            clientId: '076433a5-40e1-48b0-ba2a-12fd68124925',
-            clientSecret: 'sG1KrBNHa-h0Sq-K4QO2jj_qR',
-            scopes: ['openid', 'offline_access', 'offline', 'email', 'profile'],
+            appName: orySecrets.oryAppName,
+            clientId: orySecrets.oryAppClientId,
+            clientSecret: orySecrets.oryAppClientSecret,
+            scopes: orySecrets.oryAppClientScopes,
           },
         },
       },

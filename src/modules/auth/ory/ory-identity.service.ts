@@ -8,11 +8,8 @@ import { isJSON } from 'class-validator';
 export default class OryIdentityService {
   private readonly identityApi: IdentityApi;
   constructor(configService: ConfigService) {
-    const { oryBasePath, oryAccessToken } = configService.getOrThrow(
-      'ory',
-    ) as OrySecrets;
+    const { oryAccessToken } = configService.getOrThrow('ory') as OrySecrets;
     this.identityApi = new IdentityApi({
-      basePath: oryBasePath,
       accessToken: oryAccessToken,
       baseOptions: {
         withCredentials: true,

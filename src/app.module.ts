@@ -11,7 +11,9 @@ import { APP_PIPE } from '@nestjs/core';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot({
+      expandVariables: true,
+    }),
     DatabaseModule,
     HealthCheckModule,
     AuthModule,
