@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@grpc/grpc-js':
+    specifier: ^1.9.10
+    version: 1.9.10
   '@mikro-orm/core':
     specifier: ^5.9.3
     version: 5.9.3(@mikro-orm/mongodb@5.9.3)
@@ -32,12 +35,24 @@ dependencies:
   '@nestjs/swagger':
     specifier: ^7.1.15
     version: 7.1.15(@nestjs/common@10.2.8)(@nestjs/core@10.2.8)(class-transformer@0.5.1)(class-validator@0.14.0)(reflect-metadata@0.1.13)
+  '@nidomiro/relation-tuple-parser':
+    specifier: ^0.4.0
+    version: 0.4.0(antlr4ts@0.5.0-alpha.4)(defekt@9.3.1)(lodash@4.17.21)(tslib@2.4.1)
+  '@nidomiro/relation-tuple-parser-ory-keto':
+    specifier: ^0.4.0
+    version: 0.4.0(@nidomiro/relation-tuple-parser@0.4.0)(@ory/keto-client@0.11.0-alpha.0)(@ory/keto-grpc-client@0.11.1-alpha.0)(antlr4ts@0.5.0-alpha.4)(defekt@9.3.1)(lodash@4.17.21)(tslib@2.4.1)
   '@ory/client':
     specifier: ^1.2.17
     version: 1.2.17
+  '@ory/keto-client':
+    specifier: 0.11.0-alpha.0
+    version: 0.11.0-alpha.0
   '@ory/keto-grpc-client':
     specifier: 0.11.1-alpha.0
     version: 0.11.1-alpha.0
+  assert-never:
+    specifier: ^1.2.1
+    version: 1.2.1
   bson:
     specifier: ^6.2.0
     version: 6.2.0
@@ -47,6 +62,9 @@ dependencies:
   class-validator:
     specifier: ^0.14.0
     version: 0.14.0
+  defekt:
+    specifier: ^9.3.1
+    version: 9.3.1
   express-openid-connect:
     specifier: ^2.17.1
     version: 2.17.1(express@4.18.2)
@@ -584,8 +602,8 @@ packages:
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dev: true
 
-  /@grpc/grpc-js@1.9.9:
-    resolution: {integrity: sha512-vQ1qwi/Kiyprt+uhb1+rHMpyk4CVRMTGNUGGPRGS7pLNfWkdCHrGEnT6T3/JyC2VZgoOX/X1KwdoU0WYQAeYcQ==}
+  /@grpc/grpc-js@1.9.10:
+    resolution: {integrity: sha512-6W1NMW40R0fs4Tlv+Tx2+4J23IA/kV+ifnNaOcDAqDOBfbk3BTPuFmHVOxVQX0DEK9oD6KzKPyu2OiHW87tFpA==}
     engines: {node: ^8.13.0 || >=10.10.0}
     dependencies:
       '@grpc/proto-loader': 0.7.10
@@ -1230,6 +1248,40 @@ packages:
       tslib: 2.6.2
     dev: true
 
+  /@nidomiro/relation-tuple-parser-ory-keto@0.4.0(@nidomiro/relation-tuple-parser@0.4.0)(@ory/keto-client@0.11.0-alpha.0)(@ory/keto-grpc-client@0.11.1-alpha.0)(antlr4ts@0.5.0-alpha.4)(defekt@9.3.1)(lodash@4.17.21)(tslib@2.4.1):
+    resolution: {integrity: sha512-mi+0pV0dWHzRUb3ZLB+td0fdGzCBodfU2sPMZDaoLzqJHEzsCMq+JD3ZNuPWfuv5dcXkvb+jn4Napl7ttpsnZA==}
+    peerDependencies:
+      '@nidomiro/relation-tuple-parser': 0.4.0
+      '@ory/keto-client': 0.10.0-alpha.0
+      '@ory/keto-grpc-client': 0.10.0-alpha.0
+      antlr4ts: 0.5.0-alpha.4
+      defekt: 9.3.1
+      lodash: 4.17.21
+      tslib: 2.4.1
+    dependencies:
+      '@nidomiro/relation-tuple-parser': 0.4.0(antlr4ts@0.5.0-alpha.4)(defekt@9.3.1)(lodash@4.17.21)(tslib@2.4.1)
+      '@ory/keto-client': 0.11.0-alpha.0
+      '@ory/keto-grpc-client': 0.11.1-alpha.0
+      antlr4ts: 0.5.0-alpha.4
+      defekt: 9.3.1
+      lodash: 4.17.21
+      tslib: 2.4.1
+    dev: false
+
+  /@nidomiro/relation-tuple-parser@0.4.0(antlr4ts@0.5.0-alpha.4)(defekt@9.3.1)(lodash@4.17.21)(tslib@2.4.1):
+    resolution: {integrity: sha512-KrkzTqzEdEWN4/9Li7k0bgWRrUWmSVnmUGVS3qNgQMWf8tnbMkHUIFiGhfxqa4yjwO5PA6Dxb41VKQkSWpo1YA==}
+    peerDependencies:
+      antlr4ts: 0.5.0-alpha.4
+      defekt: 9.3.1
+      lodash: 4.17.21
+      tslib: 2.4.1
+    dependencies:
+      antlr4ts: 0.5.0-alpha.4
+      defekt: 9.3.1
+      lodash: 4.17.21
+      tslib: 2.4.1
+    dev: false
+
   /@nodelib/fs.scandir@2.1.5:
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
     engines: {node: '>= 8'}
@@ -1267,10 +1319,18 @@ packages:
       - debug
     dev: false
 
+  /@ory/keto-client@0.11.0-alpha.0:
+    resolution: {integrity: sha512-6SZPxW+8w7cvF5pZBxIiZhkCuWlaWnYNvhSM9U2A/vilv0wqwYT/dF3jnvE05/tfmcX7+fHGsB5T2sbKE5vLfw==}
+    dependencies:
+      axios: 0.21.4
+    transitivePeerDependencies:
+      - debug
+    dev: false
+
   /@ory/keto-grpc-client@0.11.1-alpha.0:
     resolution: {integrity: sha512-k/Uxdn3Rv+63sdX639Zl83UsbHOj25VbxAbNWzWXoC5E38h/xgaQCmfTJ8irTzlK6tzJtSHdPTKyFvQeOWSGlQ==}
     dependencies:
-      '@grpc/grpc-js': 1.9.9
+      '@grpc/grpc-js': 1.9.10
       google-protobuf: 3.21.2
     dev: false
 
@@ -1993,6 +2053,10 @@ packages:
     engines: {node: '>=12'}
     dev: true
 
+  /antlr4ts@0.5.0-alpha.4:
+    resolution: {integrity: sha512-WPQDt1B74OfPv/IMS2ekXAKkTZIHl88uMetg6q3OTqgFxZ/dxDXI0EWLyZid/1Pe6hTftyg5N7gel5wNAGxXyQ==}
+    dev: false
+
   /anymatch@3.1.3:
     resolution: {integrity: sha512-KMReFUr0B4t+D+OBkjR3KYqvocp2XaSzO55UcB6mgQMd3KbcE+mWTyvVV7D/zsdEbNnV6acZUutkiHQXvTr1Rw==}
     engines: {node: '>= 8'}
@@ -2039,6 +2103,10 @@ packages:
       inherits: 2.0.4
       minimalistic-assert: 1.0.1
       safer-buffer: 2.1.2
+    dev: false
+
+  /assert-never@1.2.1:
+    resolution: {integrity: sha512-TaTivMB6pYI1kXwrFlEhLeGfOqoDNdTxjCdwRfFFkEA30Eu+k48W34nlok2EYWJfFFzqaEmichdNM7th6M5HNw==}
     dev: false
 
   /asynckit@0.4.0:
@@ -2679,6 +2747,10 @@ packages:
     dependencies:
       clone: 1.0.4
     dev: true
+
+  /defekt@9.3.1:
+    resolution: {integrity: sha512-/aw6CuhAm/Fdbr6jHRt3HIhv6BGUgX1we7Q8lQQkE8izZ5v99UZnQbX5gxB7rp+zjSQLp3qyGfJXytdTlWeFpQ==}
+    dev: false
 
   /defer-to-connect@2.0.1:
     resolution: {integrity: sha512-4tvttepXG1VaYGrRibk5EwJd1t4udunSOVMdLSAL6mId1ix438oPwPZMALY41FCijukO1L0twNcGsdzS7dHgDg==}
@@ -5865,6 +5937,10 @@ packages:
       minimist: 1.2.8
       strip-bom: 3.0.0
     dev: true
+
+  /tslib@2.4.1:
+    resolution: {integrity: sha512-tGyy4dAjRIEwI7BzsB0lynWgOpfqjUdq91XXAlIWD2OwKBH7oCl/GZG/HT4BOHrTlPMOASlMQ7veyTqpmRcrNA==}
+    dev: false
 
   /tslib@2.6.2:
     resolution: {integrity: sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==}

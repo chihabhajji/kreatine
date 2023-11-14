@@ -3,9 +3,14 @@ import { GameService } from './game.service';
 import { GameController } from './game.controller';
 import { MikroOrmModule } from '@mikro-orm/nestjs';
 import { Game } from './schema/game.entity';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [MikroOrmModule.forFeature([Game]), GameModule], // Include your entity here
+  imports: [
+    ConfigModule.forRoot(),
+    MikroOrmModule.forFeature([Game]),
+    GameModule,
+  ], // Include your entity here
   providers: [GameService],
   controllers: [GameController],
 })
